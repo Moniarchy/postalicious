@@ -11,10 +11,11 @@ app.get('/', (request, response) => {
 
 app.get('/search', (request, response) => {
   response.type('text/plain')
-  if(request.query.hasOwnProperty('q') && request.query.q === 'doodads') {
-    response.send('You searched for: "doodads"')
+  if(request.query.hasOwnProperty('q')) {
+    response.send(`You searched for: ${request.query.q}`)
   } else {
-    response.send('Your search isn\'t part of the spec')
+    response.status(400)
+    response.send('You didn\'t provide a search query term :(')
   }
 })
 
