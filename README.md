@@ -13,12 +13,12 @@
 
 **Sandbox Server**
 
-- [ ] Can run the command `npm run sandbox-server` (or `npm run sb`, if you want to save some typing) to start the sandbox web server at port 3000.
-- [ ] The sandbox server source code is written using the [Express][express] library.
-- [ ] Sending a `GET` request to the path `/` responds with...
-  - [ ] a 200 (OK) status code
-  - [ ] a plain-text response body with the content `Welcome to Sandbox!`
-  - [ ] the `Content-Type` header set to `text/plain`
+- [X] Can run the command `npm run sandbox-server` (or `npm run sb`, if you want to save some typing) to start the sandbox web server at port 3000.
+- [X] The sandbox server source code is written using the [Express][express] library.
+- [X] Sending a `GET` request to the path `/` responds with...
+  - [X] a 200 (OK) status code
+  - [X] a plain-text response body with the content `Welcome to Sandbox!`
+  - [X] the `Content-Type` header set to `text/plain`
 - [ ] Sending a `GET` request to the path `/search?q=doodads` responds with...
   - [ ] a 200 (OK) status code
   - [ ] a plain-text response body with the content `You searched for: "doodads"` (it doesn't need to actually do any searching, just return the plain text)
