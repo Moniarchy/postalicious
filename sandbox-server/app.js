@@ -30,6 +30,10 @@ app.get('/somefile', (request, response) => {
     response.type('text/plain')
     response.status(200)
     response.send('This is a plain text file')
+  } else if( request.accepts('text/html')) {
+    response.type('text/html')
+    response.status(200)
+    response.send('<!DOCTYPE html><html><body>This is an HTML file</body></html>')
   }
 })
 

@@ -35,10 +35,10 @@
   - [X] a 200 (OK) status code
   - [X] a plain-text response body with the content `This is a plain text file`
   - [X] the `Content-Type` header set to `text/plain`
-- [ ] Sending a `GET` request to the path `/somefile` with an `Accept` header of `text/html` responds with...
-  - [ ] a 200 (OK) status code
-  - [ ] an HTML response body with the content `<!DOCTYPE html><html><body>This is an HTML file</body></html>`
-  - [ ] the `Content-Type` header set to `text/html`
+- [X] Sending a `GET` request to the path `/somefile` with an `Accept` header of `text/html` responds with...
+  - [X] a 200 (OK) status code
+  - [X] an HTML response body with the content `<!DOCTYPE html><html><body>This is an HTML file</body></html>`
+  - [X] the `Content-Type` header set to `text/html`
 - [ ] Sending a `GET` request to the path `/myjsondata` with an `Accept` header of `application/json` responds with...
   - [ ] a 200 (OK) status code
   - [ ] an HTML response body with the content `{ "title": "some JSON data" }`
