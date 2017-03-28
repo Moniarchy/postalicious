@@ -26,18 +26,28 @@ app.post('/things', (request, response) => {
 })
 
 app.get('/somefile', (request, response) => {
-  if ( request.accepts('text/plain')) {
-    response.type('text/plain')
-    response.status(200)
-    response.send('This is a plain text file')
-  } else if( request.accepts('text/html')) {
-    response.type('text/html')
-    response.status(200)
-    response.send('<!DOCTYPE html><html><body>This is an HTML file</body></html>')
-  } else {
-    response.type('application/json')
-    response.status(200)
-    response.json({ "title": "some JSON data" })
+  response.status(200)
+  let requestAcceptTypes = {
+    'text/plain': {
+      'method': 'send',
+      'responseMessage': 'This is a plain text file'
+    },
+    'text/html': {
+      'method': 'send',
+      'responseMessage': '<!DOCTYPE html><html><body>This is an HTML file</body></html>'
+    },
+    'application/json': {
+      'method': 'json',
+      'responseMessage': { "title": "some JSON data" }
+    }
+  }
+
+  for( let acceptType in requestAcceptTypes ) {
+    let values = requestAcceptTypes[acceptType]
+    if(request.accepts(acceptType)) {
+      response.type(acceptType)
+      response[values.method](values.responseMessage)
+    }
   }
 })
 
