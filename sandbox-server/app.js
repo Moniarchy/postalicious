@@ -26,7 +26,7 @@ app.post('/things', (request, response) => {
 })
 
 app.get('/somefile', (request, response) => {
-  if ( request.accepts('text/plain')) {
+  if (request.accepts('text/plain')) {
     response.type('text/plain')
     response.status(200)
     response.send('This is a plain text file')
