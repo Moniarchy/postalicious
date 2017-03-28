@@ -34,6 +34,10 @@ app.get('/somefile', (request, response) => {
     response.type('text/html')
     response.status(200)
     response.send('<!DOCTYPE html><html><body>This is an HTML file</body></html>')
+  } else {
+    response.type('application/json')
+    response.status(200)
+    response.json({ "title": "some JSON data" })
   }
 })
 

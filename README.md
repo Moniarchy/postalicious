@@ -39,10 +39,10 @@
   - [X] a 200 (OK) status code
   - [X] an HTML response body with the content `<!DOCTYPE html><html><body>This is an HTML file</body></html>`
   - [X] the `Content-Type` header set to `text/html`
-- [ ] Sending a `GET` request to the path `/myjsondata` with an `Accept` header of `application/json` responds with...
-  - [ ] a 200 (OK) status code
-  - [ ] an HTML response body with the content `{ "title": "some JSON data" }`
-  - [ ] the `Content-Type` header set to `application/json`
+- [X] Sending a `GET` request to the path `/myjsondata` with an `Accept` header of `application/json` responds with...
+  - [X] a 200 (OK) status code
+  - [X] an HTML response body with the content `{ "title": "some JSON data" }`
+  - [X] the `Content-Type` header set to `application/json`
 - [ ] Sending a `GET` request to the path `/old-page` responds with...
   - [ ] a 301 (Moved Permanently) status code
   - [ ] the `Location` header set to `http://localhost:3000/newpage`
