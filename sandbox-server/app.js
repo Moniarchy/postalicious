@@ -51,4 +51,10 @@ app.get('/somefile', (request, response) => {
   }
 })
 
+app.get('/old-page', (request, response) => {
+  response.status(301)
+  response.setHeader( 'Location', 'http://localhost:3000/newpage')
+  response.send()
+})
+
 app.listen(3000)
