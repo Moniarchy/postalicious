@@ -53,8 +53,8 @@
 
 **Postalicious**
 
-- [ ] Can run the command `npm run postalicious` (or `npm run pl`, if you want to save some typing) to start the Postalicious app at port 3001.
-- [ ] Users can visit the main page of the Postalicious site at `http://localhost:3001`.
+- [X] Can run the command `npm run postalicious` (or `npm run pl`, if you want to save some typing) to start the Postalicious app at port 3001.
+- [X] Users can visit the main page of the Postalicious site at `http://localhost:3001`.
 - [ ] Main page has three main sections:
   - [ ] Request builder HTML form
   - [ ] Raw HTTP request
