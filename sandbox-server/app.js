@@ -51,4 +51,22 @@ app.get('/somefile', (request, response) => {
   }
 })
 
+app.get('/old-page', (request, response) => {
+  response.status(301)
+  response.setHeader( 'Location', 'http://localhost:3000/newpage')
+  response.send()
+})
+
+app.post('/admin-only', (request, response) => {
+  response.sendStatus(403)
+})
+
+app.get('/not-a-page', (request, response) => {
+  response.sendStatus(404)
+})
+
+app.get('/server-error', (request, response) => {
+  response.sendStatus(500)
+})
+
 app.listen(3000)
