@@ -1,0 +1,135 @@
+html, body {
+  height: 97%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  height: 100%
+}
+
+.form-section {
+  height: 33%;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+/* Begin of Form Section */
+
+.form-body form {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  width: 25%;
+  height: 100%;
+}
+
+.inputButtons {
+  display: flex;
+  align-self: flex-end;
+  margin-top: 10px;
+}
+
+.buildRequest {
+  background-color: #73CE1B;
+}
+
+.buildSend {
+  background-color: #4087DF;
+}
+
+.inputButtons input {
+  margin: 5px;
+  height: 45px;
+  width: 175px;
+  border: none;
+  color: #484B3A;
+  font-size: 1em;
+}
+
+.inputButtons input:active {
+  border: none;
+}
+
+.inputFields {
+  display: flex;
+}
+
+.form-input {
+  max-width: 100px;
+  height: 17px;
+}
+
+.form-key {
+  max-width: 30px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-grouping {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.query-paremeters {
+  display: flex;
+  flex-direction: column;
+}
+/* End of Form Section */
+
+.request-response-output {
+  box-sizing: border-box;
+  height: 66%;
+}
+.request-section,
+.response-section {
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+}
+
+.form-header,
+.request-header,
+.response-header {
+  color: #474747;
+  height: 50px;
+  line-height: 50px;
+}
+
+.form-header {
+  background-color: #9c9c9c;
+}
+
+.request-header {
+  background-color: #81d232;
+}
+
+.response-header {
+  background-color: #4d93e0;
+}
+
+.request-body,
+.response-body {
+  height: 100%;
+}
+
+.form-body {
+  background-color: #f9f9f9;
+}
+
+.request-body {
+  background-color: #f3fae9;
+}
+
+.response-body {
+  background-color: #edf4fc;
+}
