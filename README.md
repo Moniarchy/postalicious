@@ -3,6 +3,7 @@
 - **Name:** Monica Williams, Serafin Wesnidge
 - **Github handle:** Moniarchy, Lumodon
 - **Team name:** `rare-malleefowl`
+- **JSDev link:*** [Postalicious](http://jsdev.learnersguild.org/goals/194-Postalicious-Demystifying_HTTP.html)
 
 ## Specifications
 
@@ -27,37 +28,37 @@
   - [X] a 400 (Bad Request) status code
   - [X] a plain-text response body with the content `You didn't provide a search query term :(`
   - [X] the `Content-Type` header set to `text/plain`
-- [ ] Sending a `POST` request to the path `/things` with a plain text body `flying car` responds with...
-  - [ ] a 201 (Created) status code
-  - [ ] a plain-text response body with the content `New thing created: "flying car"!` (it doesn't need to actually create anything, just return the plain text)
-  - [ ] the `Content-Type` header set to `text/plain`
-- [ ] Sending a `GET` request to the path `/somefile` with an `Accept` header of `text/plain` responds with...
-  - [ ] a 200 (OK) status code
-  - [ ] a plain-text response body with the content `This is a plain text file`
-  - [ ] the `Content-Type` header set to `text/plain`
-- [ ] Sending a `GET` request to the path `/somefile` with an `Accept` header of `text/html` responds with...
-  - [ ] a 200 (OK) status code
-  - [ ] an HTML response body with the content `<!DOCTYPE html><html><body>This is an HTML file</body></html>`
-  - [ ] the `Content-Type` header set to `text/html`
-- [ ] Sending a `GET` request to the path `/myjsondata` with an `Accept` header of `application/json` responds with...
-  - [ ] a 200 (OK) status code
-  - [ ] an HTML response body with the content `{ "title": "some JSON data" }`
-  - [ ] the `Content-Type` header set to `application/json`
-- [ ] Sending a `GET` request to the path `/old-page` responds with...
-  - [ ] a 301 (Moved Permanently) status code
-  - [ ] the `Location` header set to `http://localhost:3000/newpage`
-- [ ] Sending a `POST` request to the path `/admin-only` responds with a 403 (Forbidden) status code
-- [ ] Sending a `GET` request to the path `/not-a-page` responds with a 404 (Not Found) status code
-- [ ] Sending a `GET` request to the path `/server-error` responds with a 500 (Internal Server Error) staus code
+- [X] Sending a `POST` request to the path `/things` with a plain text body `flying car` responds with...
+  - [X] a 201 (Created) status code
+  - [X] a plain-text response body with the content `New thing created: "flying car"!` (it doesn't need to actually create anything, just return the plain text)
+  - [X] the `Content-Type` header set to `text/plain`
+- [X] Sending a `GET` request to the path `/somefile` with an `Accept` header of `text/plain` responds with...
+  - [X] a 200 (OK) status code
+  - [X] a plain-text response body with the content `This is a plain text file`
+  - [X] the `Content-Type` header set to `text/plain`
+- [X] Sending a `GET` request to the path `/somefile` with an `Accept` header of `text/html` responds with...
+  - [X] a 200 (OK) status code
+  - [X] an HTML response body with the content `<!DOCTYPE html><html><body>This is an HTML file</body></html>`
+  - [X] the `Content-Type` header set to `text/html`
+- [X] Sending a `GET` request to the path `/myjsondata` with an `Accept` header of `application/json` responds with...
+  - [X] a 200 (OK) status code
+  - [X] an HTML response body with the content `{ "title": "some JSON data" }`
+  - [X] the `Content-Type` header set to `application/json`
+- [X] Sending a `GET` request to the path `/old-page` responds with...
+  - [X] a 301 (Moved Permanently) status code
+  - [X] the `Location` header set to `http://localhost:3000/newpage`
+- [X] Sending a `POST` request to the path `/admin-only` responds with a 403 (Forbidden) status code
+- [X] Sending a `GET` request to the path `/not-a-page` responds with a 404 (Not Found) status code
+- [X] Sending a `GET` request to the path `/server-error` responds with a 500 (Internal Server Error) staus code
 
 **Postalicious**
 
 - [X] Can run the command `npm run postalicious` (or `npm run pl`, if you want to save some typing) to start the Postalicious app at port 3001.
 - [X] Users can visit the main page of the Postalicious site at `http://localhost:3001`.
-- [ ] Main page has three main sections:
-  - [ ] Request builder HTML form
-  - [ ] Raw HTTP request
-  - [ ] Raw HTTP response
+- [X] Main page has three main sections:
+  - [X] Request builder HTML form
+  - [X] Raw HTTP request
+  - [X] Raw HTTP response
 - [ ] When a user fills out the HTML form and clicks a "Send" button...
   - [ ] The raw HTTP request is generated and shown
   - [ ] The HTTP request is sent, and the raw response message is shown

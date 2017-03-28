@@ -25,4 +25,49 @@ app.post('/things', (request, response) => {
   response.send('New thing created: '+request.body)
 })
 
+app.get('/somefile', (request, response) => {
+
+  response.status(200)
+  let requestAcceptTypes = {
+    'text/plain': {
+      'method': 'send',
+      'responseMessage': 'This is a plain text file'
+    },
+    'text/html': {
+      'method': 'send',
+      'responseMessage': '<!DOCTYPE html><html><body>This is an HTML file</body></html>'
+    },
+    'application/json': {
+      'method': 'json',
+      'responseMessage': { "title": "some JSON data" }
+    }
+  }
+
+  for( let acceptType in requestAcceptTypes ) {
+    let values = requestAcceptTypes[acceptType]
+    if(request.accepts(acceptType)) {
+      response.type(acceptType)
+      response[values.method](values.responseMessage)
+    }
+  }
+})
+
+app.get('/old-page', (request, response) => {
+  response.status(301)
+  response.setHeader( 'Location', 'http://localhost:3000/newpage')
+  response.send()
+})
+
+app.post('/admin-only', (request, response) => {
+  response.sendStatus(403)
+})
+
+app.get('/not-a-page', (request, response) => {
+  response.sendStatus(404)
+})
+
+app.get('/server-error', (request, response) => {
+  response.sendStatus(500)
+})
+
 app.listen(3000)
