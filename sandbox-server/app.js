@@ -26,6 +26,7 @@ app.post('/things', (request, response) => {
 })
 
 app.get('/somefile', (request, response) => {
+
   response.status(200)
   let requestAcceptTypes = {
     'text/plain': {
