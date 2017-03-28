@@ -25,4 +25,12 @@ app.post('/things', (request, response) => {
   response.send('New thing created: '+request.body)
 })
 
+app.get('/somefile', (request, response) => {
+  if ( request.accepts('text/plain')) {
+    response.type('text/plain')
+    response.status(200)
+    response.send('This is a plain text file')
+  }
+})
+
 app.listen(3000)

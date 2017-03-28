@@ -27,14 +27,14 @@
   - [X] a 400 (Bad Request) status code
   - [X] a plain-text response body with the content `You didn't provide a search query term :(`
   - [X] the `Content-Type` header set to `text/plain`
-- [ ] Sending a `POST` request to the path `/things` with a plain text body `flying car` responds with...
-  - [ ] a 201 (Created) status code
-  - [ ] a plain-text response body with the content `New thing created: "flying car"!` (it doesn't need to actually create anything, just return the plain text)
-  - [ ] the `Content-Type` header set to `text/plain`
-- [ ] Sending a `GET` request to the path `/somefile` with an `Accept` header of `text/plain` responds with...
-  - [ ] a 200 (OK) status code
-  - [ ] a plain-text response body with the content `This is a plain text file`
-  - [ ] the `Content-Type` header set to `text/plain`
+- [X] Sending a `POST` request to the path `/things` with a plain text body `flying car` responds with...
+  - [X] a 201 (Created) status code
+  - [X] a plain-text response body with the content `New thing created: "flying car"!` (it doesn't need to actually create anything, just return the plain text)
+  - [X] the `Content-Type` header set to `text/plain`
+- [X] Sending a `GET` request to the path `/somefile` with an `Accept` header of `text/plain` responds with...
+  - [X] a 200 (OK) status code
+  - [X] a plain-text response body with the content `This is a plain text file`
+  - [X] the `Content-Type` header set to `text/plain`
 - [ ] Sending a `GET` request to the path `/somefile` with an `Accept` header of `text/html` responds with...
   - [ ] a 200 (OK) status code
   - [ ] an HTML response body with the content `<!DOCTYPE html><html><body>This is an HTML file</body></html>`
