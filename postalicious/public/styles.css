@@ -1,5 +1,6 @@
 html, body {
-  height: 100%
+  height: 97%;
+  box-sizing: border-box;
 }
 
 body {
@@ -13,7 +14,77 @@ body {
 .form-section {
   height: 33%;
   min-height: 180px;
+  display: flex;
+  flex-direction: column;
 }
+/* Begin of Form Section */
+
+.form-body form {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  width: 25%;
+  height: 100%;
+}
+
+.inputButtons {
+  display: flex;
+  align-self: flex-end;
+  margin-top: 10px;
+}
+
+.buildRequest {
+  background-color: #73CE1B;
+}
+
+.buildSend {
+  background-color: #4087DF;
+}
+
+.inputButtons input {
+  margin: 5px;
+  height: 45px;
+  width: 175px;
+  border: none;
+  color: #484B3A;
+  font-size: 1em;
+}
+
+.inputButtons input:active {
+  border: none;
+}
+
+.inputFields {
+  display: flex;
+}
+
+.form-input {
+  max-width: 100px;
+  height: 17px;
+}
+
+.form-key {
+  max-width: 30px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-grouping {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.query-paremeters {
+  display: flex;
+  flex-direction: column;
+}
+/* End of Form Section */
 
 .request-response-output {
   box-sizing: border-box;

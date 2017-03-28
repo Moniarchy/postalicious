@@ -11,7 +11,63 @@
   <div class="container">
     <div class="form-section">
       <div class="form-header"><span>Postalicious</span></div>
-      <div class="form-body"></div>
+      <div class="form-body">
+        <form action="" id="http-form">
+          <div class="inputFields">
+            <fieldset>
+              <legend>Method Host</legend>
+              <div class="form-grouping">
+                <label for="form_method">Method</label>
+                <input type="text" name="method" id="form_method" class="form-input">
+                <label for="form_host">Host</label>
+                <input type="text" name="host" id="form_host" class="form-input">
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Query Parameters</legend>
+              <div class="flex">
+                <div class="form-grouping query-paremeters">
+                  <input type="text" name="paramKey1" id="form_key1" class="form-key form-input" placeholder="key">
+                  <input type="text" name="paramKey2" id="form_key2" class="form-key form-input" placeholder="key">
+                  <input type="text" name="paramKey3" id="form_key3" class="form-key form-input" placeholder="key">
+                </div>
+                <div class="form-grouping query-paremeters">
+                  <input type="text" name="paramValue1" id="form_value1" class="form-input" placeholder="value">
+                  <input type="text" name="paramValue2" id="form_value2" class="form-input" placeholder="value">
+                  <input type="text" name="paramValue3" id="form_value3" class="form-input" placeholder="value">
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Headers</legend>
+              <div class="form-grouping">
+                <div class="flex">
+                  <div class="form-grouping query-paremeters">
+                    <input type="text" name="headerKey1" id="form_key1" class="form-key form-input" placeholder="key">
+                    <input type="text" name="headerKey2" id="form_key2" class="form-key form-input" placeholder="key">
+                    <input type="text" name="headerKey3" id="form_key3" class="form-key form-input" placeholder="key">
+                  </div>
+                  <div class="form-grouping query-paremeters">
+                    <input type="text" name="paramValue1" id="form_value1" class="form-input" placeholder="value">
+                    <input type="text" name="paramValue2" id="form_value2" class="form-input" placeholder="value">
+                    <input type="text" name="paramValue3" id="form_value3" class="form-input" placeholder="value">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Body</legend>
+              <div class="form-grouping">
+              <textarea name="body" id="form_body" cols="30" rows="10" form="http-form"></textarea>
+              </div>
+            </fieldset>
+          </div>
+          <div class="inputButtons">
+            <input type="submit" class="buildRequest" value="Build Request">
+            <input type="submit" class="buildSend" value="Build & Send">
+          </div>
+        </form>
+      </div>
     </div>
     <div class="request-response-output"><!--
     --><div class="request-section"><!--
