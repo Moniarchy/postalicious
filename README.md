@@ -46,9 +46,9 @@
 - [X] Sending a `GET` request to the path `/old-page` responds with...
   - [X] a 301 (Moved Permanently) status code
   - [X] the `Location` header set to `http://localhost:3000/newpage`
-- [ ] Sending a `POST` request to the path `/admin-only` responds with a 403 (Forbidden) status code
-- [ ] Sending a `GET` request to the path `/not-a-page` responds with a 404 (Not Found) status code
-- [ ] Sending a `GET` request to the path `/server-error` responds with a 500 (Internal Server Error) staus code
+- [X] Sending a `POST` request to the path `/admin-only` responds with a 403 (Forbidden) status code
+- [X] Sending a `GET` request to the path `/not-a-page` responds with a 404 (Not Found) status code
+- [X] Sending a `GET` request to the path `/server-error` responds with a 500 (Internal Server Error) staus code
 
 **Postalicious**
 
