@@ -12,7 +12,6 @@ app.get('/', (request, response) => {
 
 app.post('/ajax', (request, response) => {
   let options = JSON.parse(request.body)
-  console.log('options', options)
   httpRequest(options, (error, sbResponse, body) => {
     if(error) {
       console.log('ERROR:', error)

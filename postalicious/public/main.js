@@ -57,7 +57,12 @@ function ajax() {
     body: JSON.stringify(options) // TODO Im not working, help me!
   })
   .then( response => {
-    return response.json()
+    let responseJSON = response.clone().json()
+    if('error' in responseJSON) {
+      let errorText = response.text()
+      throw errorText
+    }
+    return responseJSON
     // TODO How do we deal with the server throwing us error objects when
     // fetch forces us to use their Response object?
     // running response.json() forces EVERYTHING passed back into a json
@@ -65,7 +70,6 @@ function ajax() {
   })
   .then( responseJSON => {
     console.log(responseJSON)
-    if('error' in responseJSON) throw responseJSON.error
     // TODO Dom manipulation to populate response DOM area
   })
   .catch( errorMsg => {
