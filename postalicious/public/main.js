@@ -43,7 +43,6 @@ function grabDom() {
     ajaxRequestOptions.headers = headers
   }
   
-  console.log(ajaxRequestOptions)
   return ajaxRequestOptions
 }
 
@@ -54,7 +53,7 @@ function ajax() {
     headers: {
       'Accept': 'text/plain'
     },
-    body: JSON.stringify(options) // TODO Im not working, help me!
+    body: JSON.stringify(options)
   })
   .then( response => {
     let responseJSON = response.clone().json()
