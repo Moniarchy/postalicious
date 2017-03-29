@@ -13,7 +13,7 @@ body {
 
 .form-section {
   height: 33%;
-  min-height: 180px;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
 }
@@ -89,6 +89,7 @@ fieldset {
 .request-response-output {
   box-sizing: border-box;
   height: 66%;
+  display: flex;
 }
 .request-section,
 .response-section {

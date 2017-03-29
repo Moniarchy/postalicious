@@ -80,30 +80,33 @@ function render(domValues) {
   let requestWindow = document.querySelector('.request-body')
   if( 'url' in domValues && 'method' in domValues) {
     let urlParent = generateParent()
-    generateElement('bold', 'request URL:', '10px', urlParent)
-    generateElement('standard', domValues.url, '10px', urlParent)
+    generateElement('bold', 'request URL:', '0px', urlParent, 1)
+    generateElement('standard', domValues.url, '0px', urlParent, 5)
     let methodParent = generateParent()
-    generateElement('bold', 'request method:', '10px', methodParent)
-    generateElement('standard', domValues.method, '10px', methodParent)
+    generateElement('bold', 'request method:', '0px', methodParent, 1)
+    generateElement('standard', domValues.method, '0px', methodParent, 5)
   }
 
-  generateElement('bold', 'request Headers:', '10px', requestWindow, 0)
+  generateElement('bold', 'request Headers:', '0px', requestWindow, 0)
   if('headers' in domValues) {
     for( let headerKey in domValues.headers) {
       let headerParent = generateParent()
-      generateElement('bold', headerKey, '20px', headerParent)
-      generateElement('standard', domValues.headers[headerKey], '20px', headerParent)
+      generateElement('bold', headerKey+':', '10px', headerParent, 1)
+      generateElement('standard', domValues.headers[headerKey], '0px', headerParent, 5)
     }
   }
 
-  function generateElement(type, content, margin, parent, grow) {
+  function generateElement(type, content, left, parent, grow) {
     let element = document.createElement('p')
     if(type === 'bold') {
       element.style.fontWeight = '700'
     }
     element.style.display = 'flex'
+    element.style.width = '140px'
     element.style.flexGrow = grow !== undefined ? grow : 1
-    element.style.margin = '2 2 2 '+margin
+    element.style.margin = '5px 2px 5px 10px'
+    element.style.position = 'relative'
+    element.style.left = left
     element.textContent = content
     parent.appendChild(element)
   }
