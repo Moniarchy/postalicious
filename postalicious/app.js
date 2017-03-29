@@ -14,10 +14,9 @@ app.post('/ajax', (request, response) => {
   let options = JSON.parse(request.body)
   httpRequest(options, (error, sbResponse, body) => {
     if(error) {
-      console.log('ERROR:', error)
-      response.send({'error': error})
+      response.json({'error': error})
     }
-    response.send({
+    response.json({
       'headers': sbResponse.headers,
       'body': body,
       'statusCode': sbResponse.statusCode,
