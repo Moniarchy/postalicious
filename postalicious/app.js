@@ -4,15 +4,31 @@ const httpRequest = require('request')
 const app = express()
 
 app.use(express.static(__dirname + '/public'))
+app.use(bodyParser.text())
 
 app.get('/', (request, response) => {
   response.sendFile('index.html')
 })
 
 app.post('/ajax', (request, response) => {
-  let body = request.body
-  console.log('body', body)
-  response.send('I finished')
+  let options = JSON.parse(request.body)
+  console.log('options', options)
+  httpRequest(options, (error, sbResponse, body) => {
+    if(error) {
+      console.log('ERROR:', error)
+      response.send({'error': error})
+    }
+    response.send({
+      'headers': sbResponse.headers,
+      'body': body,
+      'statusCode': sbResponse.statusCode,
+      'httpVersion': sbResponse.httpVersion
+    })
+  })
+})
+
+app.get('/favicon.ico', (req, res) => {
+  res.sendStatus(204)
 })
 
 app.listen(3001)

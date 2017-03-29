@@ -1,47 +1,84 @@
 'use strict'
-
+var debug
 console.log('I\'m loading')
 
 function grabDom() {
+  const QUERY_COUNT = 3
+  const HEADER_COUNT = 3
   let values = document.querySelectorAll('.inputFields *')
-  let filteredValues = []
+  let filteredValues = {}
   values.forEach( element => {
     if( element.tagName === "INPUT" || element.tagName === "TEXTAREA" ) {
-      filteredValues.push(element.value)
+      if(element.value) {
+        filteredValues[element.id] = element.value
+      }
     }
   })
 
   // TODO: Javascript error handling BEFORE the send button is clicked
   // event handlers on loseFocus for each input field
 
-  filteredValues[0] = filteredValues[0] ? filteredValues[0].toUpperCase() : 'GET'
+  let qs = populateObj(QUERY_COUNT, 'query', filteredValues)
+  let headers = populateObj(HEADER_COUNT, 'header', filteredValues)
 
-  return {
-    'url': filteredValues[1],
-    'qs': {
-      [filteredValues[2]]: filteredValues[5],
-      [filteredValues[3]]: filteredValues[6],
-      [filteredValues[4]]: filteredValues[7]
-    },
-    'method': filteredValues[0],
-    'headers': {
-      [filteredValues[8]]: filteredValues[11],
-      [filteredValues[9]]: filteredValues[12],
-      [filteredValues[10]]: filteredValues[13]
-    },
-    'body': filteredValues[14]
+  // If they forgot to include http:// then add it in for them; Let them type domain only
+  if(!/$http\:\/\//.test(filteredValues.form_host)) {
+    if(!filteredValues.form_host) {
+      filteredValues.form_host = 'localhost:3000'
+    }
+    filteredValues.form_host = 'http://'+filteredValues.form_host
   }
+
+  let ajaxRequestOptions = {
+    'url': filteredValues.form_host,
+    'method': filteredValues.form_method || 'GET',
+    'body': filteredValues.form_body
+  }
+
+  if(Object.keys(qs).length > 0) {
+    ajaxRequestOptions.qs = qs
+  }
+
+  if(Object.keys(headers).length > 0) {
+    ajaxRequestOptions.headers = headers
+  }
+  
+  console.log(ajaxRequestOptions)
+  return ajaxRequestOptions
 }
 
 function ajax() {
   const options = grabDom()
   fetch('//localhost:3001/ajax', {  
-    method: 'post', 
-    body: options // TODO Im not working, help me!
+    method: 'post',
+    headers: {
+      'Accept': 'text/plain'
+    },
+    body: JSON.stringify(options) // TODO Im not working, help me!
   })
   .then( response => {
-    console.log('client side: ', response)
-  }).catch( error => {
-    console.error('Oh no, you ', error, '\'d')
+    return response.json()
+    // TODO How do we deal with the server throwing us error objects when
+    // fetch forces us to use their Response object?
+    // running response.json() forces EVERYTHING passed back into a json
+
   })
+  .then( responseJSON => {
+    console.log(responseJSON)
+    if('error' in responseJSON) throw responseJSON.error
+    // TODO Dom manipulation to populate response DOM area
+  })
+  .catch( errorMsg => {
+    console.error(errorMsg)
+  })
+}
+
+function populateObj(count, type, container) {
+  let tempObj = {}
+  for(let i = 0; i < count; i++) {
+    if('form_'+type+'Key'+i in container && 'form_'+type+'Value'+i in container) {
+      tempObj[container['form_'+type+'Key'+i]] = container['form_'+type+'Value'+i]
+    }
+  }
+  return tempObj
 }
