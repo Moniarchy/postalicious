@@ -119,6 +119,8 @@ fieldset {
 
 .request-body,
 .response-body {
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
 

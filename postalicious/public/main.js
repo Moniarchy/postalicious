@@ -78,18 +78,41 @@ function populateObj(count, type, container) {
 
 function render(domValues) {
   let requestWindow = document.querySelector('.request-body')
+  if( 'url' in domValues && 'method' in domValues) {
+    let urlParent = generateParent()
+    generateElement('bold', 'request URL:', '10px', urlParent)
+    generateElement('standard', domValues.url, '10px', urlParent)
+    let methodParent = generateParent()
+    generateElement('bold', 'request method:', '10px', methodParent)
+    generateElement('standard', domValues.method, '10px', methodParent)
+  }
 
-  let requestUrlKey = document.createElement('p')
-  requestUrlKey.style.fontWeight = '700'
-  requestUrlKey.style.display = 'inline-block'
-  requestUrlKey.textContent = 'request URL:'
-  requestWindow.appendChild(requestUrlKey)
-    
-  let requestUrlValue = document.createElement('p')
-  requestUrlValue.style.display = 'inline'
-  requestUrlValue.style.marginLeft = '10px'
-  requestUrlValue.textContent = domValues.url
-  requestWindow.appendChild(requestUrlValue)
+  generateElement('bold', 'request Headers:', '10px', requestWindow, 0)
+  if('headers' in domValues) {
+    for( let headerKey in domValues.headers) {
+      let headerParent = generateParent()
+      generateElement('bold', headerKey, '20px', headerParent)
+      generateElement('standard', domValues.headers[headerKey], '20px', headerParent)
+    }
+  }
 
+  function generateElement(type, content, margin, parent, grow) {
+    let element = document.createElement('p')
+    if(type === 'bold') {
+      element.style.fontWeight = '700'
+    }
+    element.style.display = 'flex'
+    element.style.flexGrow = grow !== undefined ? grow : 1
+    element.style.margin = '2 2 2 '+margin
+    element.textContent = content
+    parent.appendChild(element)
+  }
 
+  function generateParent() {
+    let parent = document.createElement('div')
+    parent.style.display = 'flex'
+    parent.style.flexDirection = 'row'
+    requestWindow.appendChild(parent)
+    return parent
+  }
 }
