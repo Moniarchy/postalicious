@@ -43,6 +43,7 @@ function grabDom() {
     ajaxRequestOptions.headers = headers
   }
   
+  render(ajaxRequestOptions)
   return ajaxRequestOptions
 }
 
@@ -73,4 +74,22 @@ function populateObj(count, type, container) {
     }
   }
   return tempObj
+}
+
+function render(domValues) {
+  let requestWindow = document.querySelector('.request-body')
+
+  let requestUrlKey = document.createElement('p')
+  requestUrlKey.style.fontWeight = '700'
+  requestUrlKey.style.display = 'inline-block'
+  requestUrlKey.textContent = 'request URL:'
+  requestWindow.appendChild(requestUrlKey)
+    
+  let requestUrlValue = document.createElement('p')
+  requestUrlValue.style.display = 'inline'
+  requestUrlValue.style.marginLeft = '10px'
+  requestUrlValue.textContent = domValues.url
+  requestWindow.appendChild(requestUrlValue)
+
+
 }
