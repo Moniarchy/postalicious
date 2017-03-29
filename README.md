@@ -63,9 +63,9 @@
   - [ ] The raw HTTP request is generated and shown
   - [ ] The HTTP request is sent, and the raw response message is shown
 - [X] Users can fill out an HTML form to specify HTTP request details.
-- [ ] Submitting the form will send the request according to the specified details.
-- [ ] Requests are made from the server, not from the browser (this is to avoid [CORS issues](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS)).
-- [ ] Using the HTML form, users can specify...
+- [X] Submitting the form will send the request according to the specified details.
+- [X] Requests are made from the server, not from the browser (this is to avoid [CORS issues](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS)).
+- [X] Using the HTML form, users can specify...
   - [X] host and path
   - [X] HTTP verb/method
   - [X] query parameter keys + values
