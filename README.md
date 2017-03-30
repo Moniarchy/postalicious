@@ -34,13 +34,14 @@
 | get  | localhost:3000/not-a-page            |
 | get  | localhost:3000/server-error          |
 
-
 These are sample endpoints to connect to, but the app can connect to any external API if you send the correct information.
 
 To use the app, at minimum you must type the verb into the method field, type the domain and path into the host field. Query parameters, headers, and body for your request are optional. 
 
 Click build request to see a display of your request.
 Click build & send to display and send your request to the endpoint host you are trying to connect to. If you successfully connected to the endpoint, the response will show on the right hand side.
+
+![Image of screen shot of usage example](https://github.com/Moniarchy/postalicious/raw/master/usageExample.png)
 
 ## Specifications
 
