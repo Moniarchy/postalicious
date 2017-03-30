@@ -126,7 +126,6 @@ function renderResponse(domValues, timeBefore) {
       let secondsRender = Math.floor(Math.abs(Math.floor((timeBefore-currentTimePL) / 1000) % 60))
       timeDifference[1] = 'Minutes: ' + minutesRender + ', Seconds: ' + secondsRender
     }
-    valuebug = domValues.headers.date
     let bodyContainer = generateParent(responseWindow)
     generateElement('bold', 'body:', '0px', bodyContainer, 1)
     generateElement('standard', domValues.body, '0px', bodyContainer, 5, true)
