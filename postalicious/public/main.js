@@ -1,5 +1,4 @@
 'use strict'
-var valuebug
 
 function grabDom() {
   const QUERY_COUNT = 3
@@ -7,7 +6,7 @@ function grabDom() {
   let values = document.querySelectorAll('.inputFields *')
   let filteredValues = {}
   values.forEach( element => {
-    if( element.tagName === "INPUT" || element.tagName === "TEXTAREA" ) {
+    if( element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' ) {
       if(element.value) {
         filteredValues[element.id] = element.value
       }
