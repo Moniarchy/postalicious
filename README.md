@@ -1,7 +1,7 @@
 # Postalicious
 
 - **Name:** Monica Williams, Serafin Wesnidge
-- **Github handle:** @Moniarchy, @Lumodon
+- **Github handle:** [@moniarchy](https://github.com/moniarchy), [@lumodon](https://github.com/lumodon)
 - **Team name:** `rare-malleefowl`
 - **JSDev link:** [Postalicious](http://jsdev.learnersguild.org/goals/194-Postalicious-Demystifying_HTTP.html)
 
