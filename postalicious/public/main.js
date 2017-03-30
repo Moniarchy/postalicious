@@ -96,6 +96,15 @@ function renderRequest(domValues) {
       generateElement('standard', domValues.headers[headerKey], '0px', headerParent, 5)
     }
   }
+
+  generateElement('bold', 'query parameters:', '0px', requestWindow, 0)
+  if('qs' in domValues) {
+    for( let queryKey in domValues.qs) {
+      let queryParent = generateParent(requestWindow)
+      generateElement('bold', queryKey+':', '10px', queryParent, 1)
+      generateElement('standard', domValues.qs[queryKey], '0px', queryParent, 5)
+    }
+  }
 }
 
 function renderResponse(domValues, timeBefore) {
@@ -166,6 +175,7 @@ function generateElement(type, content, left, parent, grow, overflow) {
   element.style.flexGrow = grow !== undefined ? grow : 1
   element.style.margin = '9px 2px 9px 10px'
   element.style.position = 'relative'
+  element.style.minHeight = '40px'
   element.style.left = left
   if(overflow) {
     element.style.overflow = 'auto'
@@ -179,6 +189,7 @@ function generateParent(mainWindow) {
   let parent = document.createElement('div')
   parent.style.display = 'flex'
   parent.style.flexDirection = 'row'
+  parent.style.minHeight = '40px'
   mainWindow.appendChild(parent)
   return parent
 }
