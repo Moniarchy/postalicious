@@ -91,8 +91,8 @@ function renderRequest(domValues) {
   if('headers' in domValues) {
     for( let headerKey in domValues.headers) {
       let headerParent = generateParent(requestWindow)
-      generateElement('bold', headerKey+':', '10px', headerParent, 1)
-      headerParent.lastChild().style.left = '10px'
+      generateElement('bold', headerKey+':', headerParent, 1)
+      headerParent.lastChild.style.left = '10px'
       generateElement('standard', domValues.headers[headerKey], headerParent, 5)
     }
   }
@@ -101,8 +101,8 @@ function renderRequest(domValues) {
   if('qs' in domValues) {
     for( let queryKey in domValues.qs) {
       let queryParent = generateParent(requestWindow)
-      generateElement('bold', queryKey+':', '10px', queryParent, 1)
-      queryParent.lastChild().style.left = '10px'
+      generateElement('bold', queryKey+':', queryParent, 1)
+      queryParent.lastChild.style.left = '10px'
       generateElement('standard', domValues.qs[queryKey], queryParent, 5)
     }
   }
@@ -156,8 +156,8 @@ function renderResponse(domValues, timeBefore) {
     if('headers' in domValues) {
       for( let headerKey in domValues.headers) {
         let headerParent = generateParent(headerParentContainer)
-        generateElement('bold', headerKey+':', '10px', headerParent, 1)
-        headerParent.lastChild().style.left = '10px'
+        generateElement('bold', headerKey+':', headerParent, 1)
+        headerParent.lastChild.style.left = '10px'
         generateElement('standard', domValues.headers[headerKey], headerParent, 5)
       }
     }
