@@ -79,29 +79,31 @@ function renderRequest(domValues) {
   cleanDom(requestWindow)
   if( 'url' in domValues && 'method' in domValues) {
     let urlParent = generateParent(requestWindow)
-    generateElement('bold', 'request URL:', '0px', urlParent, 1)
-    generateElement('standard', domValues.url, '0px', urlParent, 5)
+    generateElement('bold', 'request URL:', urlParent, 1)
+    generateElement('standard', domValues.url, urlParent, 5)
 
     let methodParent = generateParent(requestWindow)
-    generateElement('bold', 'request method:', '0px', methodParent, 1)
-    generateElement('standard', domValues.method, '0px', methodParent, 5)
+    generateElement('bold', 'request method:', methodParent, 1)
+    generateElement('standard', domValues.method, methodParent, 5)
   }
 
-  generateElement('bold', 'request Headers:', '0px', requestWindow, 0)
+  generateElement('bold', 'request Headers:', requestWindow, 0)
   if('headers' in domValues) {
     for( let headerKey in domValues.headers) {
       let headerParent = generateParent(requestWindow)
       generateElement('bold', headerKey+':', '10px', headerParent, 1)
-      generateElement('standard', domValues.headers[headerKey], '0px', headerParent, 5)
+      headerParent.lastChild().style.left = '10px'
+      generateElement('standard', domValues.headers[headerKey], headerParent, 5)
     }
   }
 
-  generateElement('bold', 'query parameters:', '0px', requestWindow, 0)
+  generateElement('bold', 'query parameters:', requestWindow, 0)
   if('qs' in domValues) {
     for( let queryKey in domValues.qs) {
       let queryParent = generateParent(requestWindow)
       generateElement('bold', queryKey+':', '10px', queryParent, 1)
-      generateElement('standard', domValues.qs[queryKey], '0px', queryParent, 5)
+      queryParent.lastChild().style.left = '10px'
+      generateElement('standard', domValues.qs[queryKey], queryParent, 5)
     }
   }
 }
@@ -127,26 +129,27 @@ function renderResponse(domValues, timeBefore) {
       timeDifference[1] = 'Minutes: ' + minutesRender + ', Seconds: ' + secondsRender
     }
     let bodyContainer = generateParent(responseWindow)
-    generateElement('bold', 'body:', '0px', bodyContainer, 1)
-    generateElement('standard', domValues.body, '0px', bodyContainer, 5, true)
+    bodyContainer.style.minHeight = '350px'
+    generateElement('bold', 'body:', bodyContainer, 1)
+    generateElement('standard', domValues.body, bodyContainer, 5, true)
 
     let timeToRespondAJAX = generateParent(responseWindow)
-    generateElement('bold', 'time taken for response:', '0px', timeToRespondAJAX, 1)
-    generateElement('standard', timeDifference[0], '0px', timeToRespondAJAX, 5, true) 
+    generateElement('bold', 'time taken for response:', timeToRespondAJAX, 1)
+    generateElement('standard', timeDifference[0], timeToRespondAJAX, 5, true) 
 
     let timeToRespondPL = generateParent(responseWindow)
-    generateElement('bold', 'time taken for render:', '0px', timeToRespondPL, 1)
-    generateElement('standard', timeDifference[1], '0px', timeToRespondPL, 5, true)
+    generateElement('bold', 'time taken for render:', timeToRespondPL, 1)
+    generateElement('standard', timeDifference[1], timeToRespondPL, 5, true)
 
     let httpVersionContainer = generateParent(responseWindow)
-    generateElement('bold', 'http version:', '0px', httpVersionContainer, 1)
-    generateElement('standard', domValues.httpVersion, '0px', httpVersionContainer, 5)
+    generateElement('bold', 'http version:', httpVersionContainer, 1)
+    generateElement('standard', domValues.httpVersion, httpVersionContainer, 5)
 
     let statusCodeContainer = generateParent(responseWindow)
-    generateElement('bold', 'status code:', '0px', statusCodeContainer, 1)
-    generateElement('standard', domValues.statusCode, '0px', statusCodeContainer, 5)
+    generateElement('bold', 'status code:', statusCodeContainer, 1)
+    generateElement('standard', domValues.statusCode, statusCodeContainer, 5)
 
-    generateElement('bold', 'response Headers:', '0px', responseWindow, 0)
+    generateElement('bold', 'response Headers:', responseWindow, 0)
     let headerParentContainer = generateParent(responseWindow)
     headerParentContainer.style.flexDirection = 'column'
     headerParentContainer.style.height = '400px'
@@ -154,28 +157,23 @@ function renderResponse(domValues, timeBefore) {
       for( let headerKey in domValues.headers) {
         let headerParent = generateParent(headerParentContainer)
         generateElement('bold', headerKey+':', '10px', headerParent, 1)
-        generateElement('standard', domValues.headers[headerKey], '0px', headerParent, 5)
+        headerParent.lastChild().style.left = '10px'
+        generateElement('standard', domValues.headers[headerKey], headerParent, 5)
       }
     }
   }
 }
 
-function generateElement(type, content, left, parent, grow, overflow) {
+function generateElement(type, content, parent, grow, overflow) {
   let element = document.createElement('p')
   if(type === 'bold') {
     element.style.fontWeight = '700'
   }
   // TODO Fix styling issue when too much text is displayed in headers and body - overlap occurs
-  element.style.display = 'flex'
-  element.style.width = '150px'
   element.style.flexGrow = grow !== undefined ? grow : 1
-  element.style.margin = '9px 2px 9px 10px'
-  element.style.position = 'relative'
-  element.style.minHeight = '40px'
-  element.style.left = left
+  element.className = 'requestResponseNode'
   if(overflow) {
-    element.style.overflow = 'auto'
-    element.style.maxHeight = '350px'
+    element.className = element.className + ' overflow'
   }
   element.textContent = content
   parent.appendChild(element)
@@ -183,9 +181,7 @@ function generateElement(type, content, left, parent, grow, overflow) {
 
 function generateParent(mainWindow) {
   let parent = document.createElement('div')
-  parent.style.display = 'flex'
-  parent.style.flexDirection = 'row'
-  parent.style.minHeight = '40px'
+  parent.className = 'requestResponseParent'
   mainWindow.appendChild(parent)
   return parent
 }

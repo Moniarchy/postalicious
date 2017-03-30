@@ -136,3 +136,23 @@ fieldset {
 .response-body {
   background-color: #edf4fc;
 }
+
+.requestResponseNode {
+  display: flex;
+  width: 150px;
+  margin: 9px 2px 9px 10px;
+  position: relative;
+  min-height: 40px;
+}
+
+.requestResponseParent {
+  display: flex;
+  flex-direction: row;
+  min-height: 40px;
+}
+
+.overflow {
+  overflow: auto;
+  min-height: 350px;
+  max-height: 350px;
+}
