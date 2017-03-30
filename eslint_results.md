@@ -1,20 +1,22 @@
 
-4m/Users/serafin/Projects/postalicious/LICENSE24m
-  2m1:522m  31merror39m  Parsing error: Unexpected token License
+/Users/serafin/Projects/postalicious/LICENSE
+  1:5  error  Parsing error: Unexpected token License
 
-4m/Users/serafin/Projects/postalicious/README.md24m
-  2m1:122m  31merror39m  Parsing error: Unexpected character '#'
+/Users/serafin/Projects/postalicious/README.md
+  1:1  error  Parsing error: Unexpected character '#'
 
-4m/Users/serafin/Projects/postalicious/notes.log24m
-  2m1:522m  31merror39m  Parsing error: Unexpected token time
+/Users/serafin/Projects/postalicious/eslint_results.md
+  2:2  error  Parsing error: Identifier directly after number
 
-4m/Users/serafin/Projects/postalicious/package.json24m
-  2m2:922m  31merror39m  Parsing error: Unexpected token :
+/Users/serafin/Projects/postalicious/notes.log
+  1:5  error  Parsing error: Unexpected token time
 
-4m/Users/serafin/Projects/postalicious/postalicious/public/main.js24m
-   2m63:522m  31merror39m  Unexpected console statement  2mno-console22m
-  2m118:722m  31merror39m  Unexpected console statement  2mno-console22m
-  2m124:722m  31merror39m  Unexpected console statement  2mno-console22m
+/Users/serafin/Projects/postalicious/package.json
+  2:9  error  Parsing error: Unexpected token :
 
-31m1m✖ 7 problems (7 errors, 0 warnings)
-22m39m
+/Users/serafin/Projects/postalicious/postalicious/public/main.js
+   63:5  error  Unexpected console statement  no-console
+  120:7  error  Unexpected console statement  no-console
+  126:7  error  Unexpected console statement  no-console
+
+✖ 8 problems (8 errors, 0 warnings)
