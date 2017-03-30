@@ -6,7 +6,7 @@ function grabDom() {
   let values = document.querySelectorAll('.inputFields *')
   let filteredValues = {}
   values.forEach( element => {
-    if( element.tagName === "INPUT" || element.tagName === "TEXTAREA" ) {
+    if( element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' ) {
       if(element.value) {
         filteredValues[element.id] = element.value
       }
@@ -27,26 +27,27 @@ function grabDom() {
     filteredValues.form_host = 'http://'+filteredValues.form_host
   }
 
-  let ajaxRequestOptions = {
+  let payloadRequestOptions = {
     'url': filteredValues.form_host,
     'method': filteredValues.form_method || 'GET',
     'body': filteredValues.form_body
   }
 
   if(Object.keys(qs).length > 0) {
-    ajaxRequestOptions.qs = qs
+    payloadRequestOptions.qs = qs
   }
 
   if(Object.keys(headers).length > 0) {
-    ajaxRequestOptions.headers = headers
+    payloadRequestOptions.headers = headers
   }
   
-  render(ajaxRequestOptions)
-  return ajaxRequestOptions
+  renderRequest(payloadRequestOptions)
+  return payloadRequestOptions
 }
 
 function ajax() {
   const options = grabDom()
+  const timeBefore = Date.now()
   fetch('//localhost:3001/ajax', {  
     method: 'post',
     headers: {
@@ -56,8 +57,7 @@ function ajax() {
   })
   .then(response => response.json())
   .then(responseJSON => {
-    console.log(responseJSON)
-    // TODO Dom manipulation to populate response DOM area
+    renderResponse(responseJSON, timeBefore)
   })
   .catch(errorMsg => {
     console.error(errorMsg)
@@ -74,47 +74,121 @@ function populateObj(count, type, container) {
   return tempObj
 }
 
-function render(domValues) {
+function renderRequest(domValues) {
   let requestWindow = document.querySelector('.request-body')
+  cleanDom(requestWindow)
   if( 'url' in domValues && 'method' in domValues) {
-    let urlParent = generateParent()
-    generateElement('bold', 'request URL:', '0px', urlParent, 1)
-    generateElement('standard', domValues.url, '0px', urlParent, 5)
-    let methodParent = generateParent()
-    generateElement('bold', 'request method:', '0px', methodParent, 1)
-    generateElement('standard', domValues.method, '0px', methodParent, 5)
+    let urlParent = generateParent(requestWindow)
+    generateElement('bold', 'request URL:', urlParent, 1)
+    generateElement('standard', domValues.url, urlParent, 5)
+
+    let methodParent = generateParent(requestWindow)
+    generateElement('bold', 'request method:', methodParent, 1)
+    generateElement('standard', domValues.method, methodParent, 5)
   }
 
-  generateElement('bold', 'request Headers:', '0px', requestWindow, 0)
+  generateElement('bold', 'request Headers:', requestWindow, 0)
   if('headers' in domValues) {
     for( let headerKey in domValues.headers) {
-      let headerParent = generateParent()
+      let headerParent = generateParent(requestWindow)
       generateElement('bold', headerKey+':', '10px', headerParent, 1)
-      generateElement('standard', domValues.headers[headerKey], '0px', headerParent, 5)
+      headerParent.lastChild().style.left = '10px'
+      generateElement('standard', domValues.headers[headerKey], headerParent, 5)
     }
   }
 
-  function generateElement(type, content, left, parent, grow) {
-    let element = document.createElement('p')
-    if(type === 'bold') {
-      element.style.fontWeight = '700'
+  generateElement('bold', 'query parameters:', requestWindow, 0)
+  if('qs' in domValues) {
+    for( let queryKey in domValues.qs) {
+      let queryParent = generateParent(requestWindow)
+      generateElement('bold', queryKey+':', '10px', queryParent, 1)
+      queryParent.lastChild().style.left = '10px'
+      generateElement('standard', domValues.qs[queryKey], queryParent, 5)
     }
-    element.style.display = 'flex'
-    element.style.width = '140px'
-    element.style.flexGrow = grow !== undefined ? grow : 1
-    element.style.margin = '5px 2px 5px 10px'
-    element.style.position = 'relative'
-    element.style.left = left
-    element.textContent = content
-    parent.appendChild(element)
   }
+}
 
-  function generateParent() {
-    let parent = document.createElement('div')
-    parent.style.display = 'flex'
-    parent.style.flexDirection = 'row'
-    requestWindow.appendChild(parent)
-    return parent
+function renderResponse(domValues, timeBefore) {
+  let responseWindow = document.querySelector('.response-body')
+  cleanDom(responseWindow)
+  if('error' in domValues){
+    // TODO Display error information like status code etc.
+  } else {
+    let timeDifference = []
+    if(domValues.headers && domValues.headers.date) {
+      let currentTime = Date.parse(domValues.headers.date)
+      console.log('currentTime', currentTime, ', timeBefore', timeBefore)
+      let minutesAJAX = Math.floor(Math.abs(Math.floor((timeBefore-currentTime) / 1000) / 60))
+      let secondsAJAX = Math.floor(Math.abs(Math.floor((timeBefore-currentTime) / 1000) % 60))
+      timeDifference[0] = 'Minutes: ' + minutesAJAX + ', Seconds: ' + secondsAJAX
+
+      let currentTimePL = Date.now()      
+      console.log('currentTimePL', currentTimePL, ', timeBefore', timeBefore)
+      let minutesRender = Math.floor(Math.abs(Math.floor((timeBefore-currentTimePL) / 1000) / 60))
+      let secondsRender = Math.floor(Math.abs(Math.floor((timeBefore-currentTimePL) / 1000) % 60))
+      timeDifference[1] = 'Minutes: ' + minutesRender + ', Seconds: ' + secondsRender
+    }
+    let bodyContainer = generateParent(responseWindow)
+    bodyContainer.style.minHeight = '350px'
+    generateElement('bold', 'body:', bodyContainer, 1)
+    generateElement('standard', domValues.body, bodyContainer, 5, true)
+
+    let timeToRespondAJAX = generateParent(responseWindow)
+    generateElement('bold', 'time taken for response:', timeToRespondAJAX, 1)
+    generateElement('standard', timeDifference[0], timeToRespondAJAX, 5, true) 
+
+    let timeToRespondPL = generateParent(responseWindow)
+    generateElement('bold', 'time taken for render:', timeToRespondPL, 1)
+    generateElement('standard', timeDifference[1], timeToRespondPL, 5, true)
+
+    let httpVersionContainer = generateParent(responseWindow)
+    generateElement('bold', 'http version:', httpVersionContainer, 1)
+    generateElement('standard', domValues.httpVersion, httpVersionContainer, 5)
+
+    let statusCodeContainer = generateParent(responseWindow)
+    generateElement('bold', 'status code:', statusCodeContainer, 1)
+    generateElement('standard', domValues.statusCode, statusCodeContainer, 5)
+
+    generateElement('bold', 'response Headers:', responseWindow, 0)
+    let headerParentContainer = generateParent(responseWindow)
+    headerParentContainer.style.flexDirection = 'column'
+    headerParentContainer.style.height = '400px'
+    if('headers' in domValues) {
+      for( let headerKey in domValues.headers) {
+        let headerParent = generateParent(headerParentContainer)
+        generateElement('bold', headerKey+':', '10px', headerParent, 1)
+        headerParent.lastChild().style.left = '10px'
+        generateElement('standard', domValues.headers[headerKey], headerParent, 5)
+      }
+    }
+  }
+}
+
+function generateElement(type, content, parent, grow, overflow) {
+  let element = document.createElement('p')
+  if(type === 'bold') {
+    element.style.fontWeight = '700'
+  }
+  // TODO Fix styling issue when too much text is displayed in headers and body - overlap occurs
+  element.style.flexGrow = grow !== undefined ? grow : 1
+  element.className = 'requestResponseNode'
+  if(overflow) {
+    element.className = element.className + ' overflow'
+  }
+  element.textContent = content
+  parent.appendChild(element)
+}
+
+function generateParent(mainWindow) {
+  let parent = document.createElement('div')
+  parent.className = 'requestResponseParent'
+  mainWindow.appendChild(parent)
+  return parent
+}
+
+function cleanDom(windowToClean) {
+  while (windowToClean.hasChildNodes()) {
+    windowToClean.removeChild(windowToClean.lastChild)
   }
 }
 
@@ -125,10 +199,5 @@ window.addEventListener('load', () => {
     .addEventListener('click', ajax)
 })
 
-// window.addEventListener('load')
-
-
-
-    // case 'click':
-  //lose focus
-  //keydown when no inputs are focused
+// TODO: On lose focus - error validate the input boxes
+// on keydown (enter) don't submit form if textbox currently active

@@ -39,7 +39,7 @@ app.get('/somefile', (request, response) => {
     },
     'application/json': {
       'method': 'json',
-      'responseMessage': { "title": "some JSON data" }
+      'responseMessage': { 'title': 'some JSON data' }
     }
   }
 
