@@ -83,7 +83,6 @@ fieldset {
   display: flex;
   flex-direction: column;
 }
-/* End of Form Section */
 
 .request-response-output {
   box-sizing: border-box;

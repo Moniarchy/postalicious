@@ -28,22 +28,22 @@ function grabDom() {
     filteredValues.form_host = 'http://'+filteredValues.form_host
   }
 
-  let ajaxRequestOptions = {
+  let payloadRequestOptions = {
     'url': filteredValues.form_host,
     'method': filteredValues.form_method || 'GET',
     'body': filteredValues.form_body
   }
 
   if(Object.keys(qs).length > 0) {
-    ajaxRequestOptions.qs = qs
+    payloadRequestOptions.qs = qs
   }
 
   if(Object.keys(headers).length > 0) {
-    ajaxRequestOptions.headers = headers
+    payloadRequestOptions.headers = headers
   }
   
-  renderRequest(ajaxRequestOptions)
-  return ajaxRequestOptions
+  renderRequest(payloadRequestOptions)
+  return payloadRequestOptions
 }
 
 function ajax() {
@@ -113,8 +113,6 @@ function renderResponse(domValues, timeBefore) {
   if('error' in domValues){
     // TODO Display error information like status code etc.
   } else {
-    // minutes: Math.floor(Math.abs(Math.floor((a-Date.now()) / 1000) / 60))
-    // seconds: Math.floor(Math.abs(Math.floor((a-Date.now()) / 1000) % 60))
     let timeDifference = []
     if(domValues.headers && domValues.headers.date) {
       let currentTime = Date.parse(domValues.headers.date)
@@ -207,10 +205,5 @@ window.addEventListener('load', () => {
     .addEventListener('click', ajax)
 })
 
-// window.addEventListener('load')
-
-
-
-    // case 'click':
-  //lose focus
-  //keydown when no inputs are focused
+// TODO: On lose focus - error validate the input boxes
+// on keydown (enter) don't submit form if textbox currently active
