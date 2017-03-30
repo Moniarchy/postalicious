@@ -91,8 +91,8 @@ function renderRequest(domValues) {
   if('headers' in domValues) {
     for( let headerKey in domValues.headers) {
       let headerParent = generateParent(requestWindow)
-      generateElement('bold', headerKey+':', '10px', headerParent, 1)
-      headerParent.lastChild().style.left = '10px'
+      generateElement('bold', headerKey+':', headerParent, 1)
+      headerParent.lastChild.style.left = '10px'
       generateElement('standard', domValues.headers[headerKey], headerParent, 5)
     }
   }
@@ -101,8 +101,8 @@ function renderRequest(domValues) {
   if('qs' in domValues) {
     for( let queryKey in domValues.qs) {
       let queryParent = generateParent(requestWindow)
-      generateElement('bold', queryKey+':', '10px', queryParent, 1)
-      queryParent.lastChild().style.left = '10px'
+      generateElement('bold', queryKey+':', queryParent, 1)
+      queryParent.lastChild.style.left = '10px'
       generateElement('standard', domValues.qs[queryKey], queryParent, 5)
     }
   }
@@ -117,13 +117,11 @@ function renderResponse(domValues, timeBefore) {
     let timeDifference = []
     if(domValues.headers && domValues.headers.date) {
       let currentTime = Date.parse(domValues.headers.date)
-      console.log('currentTime', currentTime, ', timeBefore', timeBefore)
       let minutesAJAX = Math.floor(Math.abs(Math.floor((timeBefore-currentTime) / 1000) / 60))
       let secondsAJAX = Math.floor(Math.abs(Math.floor((timeBefore-currentTime) / 1000) % 60))
       timeDifference[0] = 'Minutes: ' + minutesAJAX + ', Seconds: ' + secondsAJAX
 
       let currentTimePL = Date.now()      
-      console.log('currentTimePL', currentTimePL, ', timeBefore', timeBefore)
       let minutesRender = Math.floor(Math.abs(Math.floor((timeBefore-currentTimePL) / 1000) / 60))
       let secondsRender = Math.floor(Math.abs(Math.floor((timeBefore-currentTimePL) / 1000) % 60))
       timeDifference[1] = 'Minutes: ' + minutesRender + ', Seconds: ' + secondsRender
@@ -156,8 +154,8 @@ function renderResponse(domValues, timeBefore) {
     if('headers' in domValues) {
       for( let headerKey in domValues.headers) {
         let headerParent = generateParent(headerParentContainer)
-        generateElement('bold', headerKey+':', '10px', headerParent, 1)
-        headerParent.lastChild().style.left = '10px'
+        generateElement('bold', headerKey+':', headerParent, 1)
+        headerParent.lastChild.style.left = '10px'
         generateElement('standard', domValues.headers[headerKey], headerParent, 5)
       }
     }

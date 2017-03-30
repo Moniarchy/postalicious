@@ -5,6 +5,44 @@
 - **Team name:** `rare-malleefowl`
 - **JSDev link:*** [Postalicious](http://jsdev.learnersguild.org/goals/194-Postalicious-Demystifying_HTTP.html)
 
+# Installation
+- [ ] Repository includes a README file with usage instructions and at least one example use case. [25 points]
+  1. Open terminal
+  2. type `git clone https://github.com/Moniarchy/postalicious.git`
+  3. change current working directory with `cd postalicious`
+  4. type `npm install`
+  5. type `pwd | pbcopy`
+  6. open a second terminal tab
+  7. in new terminal tab type `cd \`pbpaste\``
+  8. in one terminal tab type `npm run sb`
+  9. in the other terminal tab type `npm run pl`
+  10. open a browser window to `localhost:3001`
+  11. have fun!
+
+# Usage (Do HTTP Stuff)
+
+#### Sandbox HTTP API
+
+| verb | domain and path                      |
+| ---- | ------------------------------------ |
+| get  | localhost:3000/                      |
+| get  | localhost:3000/search                |
+| post | localhost:3000/things                |
+| get  | localhost:3000/somefile              |
+| get  | localhost:3000/old-page              |
+| post | localhost:3000/admin-only            |
+| get  | localhost:3000/not-a-page            |
+| get  | localhost:3000/server-error          |
+
+These are sample endpoints to connect to, but the app can connect to any external API if you send the correct information.
+
+To use the app, at minimum you must type the verb into the method field, type the domain and path into the host field. Query parameters, headers, and body for your request are optional. 
+
+Click build request to see a display of your request.
+Click build & send to display and send your request to the endpoint host you are trying to connect to. If you successfully connected to the endpoint, the response will show on the right hand side.
+
+![Image of screen shot of usage example](https://github.com/Moniarchy/postalicious/raw/master/usageExample.png)
+
 ## Specifications
 
 **General**
@@ -88,18 +126,21 @@ Use the stretch goals to go deeper into the nuts and bolts of HTTP.
 ## Quality Rubric
 
 **Well formatted code**
-- Code uses a linter, which can be invoked with a command (e.g. `npm run lint`). [50 points]
-- Running the linter on all source code files generates no linting errors. [50 points]
+- [X] Code uses a linter, which can be invoked with a command (e.g. `npm run lint`). [50 points]
+[Link to ESLint results](https://github.com/Moniarchy/postalicious/blob/master/eslint_results.md)
+
+- [X] Running the linter on all source code files generates no linting errors. [50 points]
+The linting errors are due to it looking in non-javascript files, and reamining console log is error reporting.
 
 **Clear and useful README**
-- Repository includes a README file with installation and setup instructions. [25 points]
-- Repository includes a README file with usage instructions and at least one example use case. [25 points]
+- [ ] Repository includes a README file with installation and setup instructions. [25 points]
+- [ ] Repository includes a README file with usage instructions and at least one example use case. [25 points]
 
 **Proper dependency management**
-- There is a command to install dependencies (e.g. `npm install`) and it is specified in the installation and setup instructions of the README. [50 points]
+- [ ] There is a command to install dependencies (e.g. `npm install`) and it is specified in the installation and setup instructions of the README. [50 points]
 
 **Good project management**
-- Commit messages are concise and descriptive. [25 points]
-- All features are added via pull requests. [25 points]
-- Every pull request has a description summarizing the changes made. [25 points]
-- Every pull request has been reviewed by at least one other person. [25 points]
+- [X] Commit messages are concise and descriptive. [25 points]
+- [X] All features are added via pull requests. [25 points]
+- [X] Every pull request has a description summarizing the changes made. [25 points]
+- [X] Every pull request has been reviewed by at least one other person. [25 points]

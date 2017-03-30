@@ -60,12 +60,13 @@ fieldset {
 }
 
 .form-input {
-  max-width: 100px;
-  height: 17px;
+  max-width: 230px;
+  height: 30px;
+  font-size: 1.3em;
 }
 
 .form-key {
-  max-width: 30px;
+  max-width: 120px;
 }
 
 .flex {
