@@ -133,11 +133,11 @@ Use the stretch goals to go deeper into the nuts and bolts of HTTP.
 The linting errors are due to it looking in non-javascript files, and reamining console log is error reporting.
 
 **Clear and useful README**
-- [ ] Repository includes a README file with installation and setup instructions. [25 points]
-- [ ] Repository includes a README file with usage instructions and at least one example use case. [25 points]
+- [X] Repository includes a README file with installation and setup instructions. [25 points]
+- [X] Repository includes a README file with usage instructions and at least one example use case. [25 points]
 
 **Proper dependency management**
-- [ ] There is a command to install dependencies (e.g. `npm install`) and it is specified in the installation and setup instructions of the README. [50 points]
+- [X] There is a command to install dependencies (e.g. `npm install`) and it is specified in the installation and setup instructions of the README. [50 points]
 
 **Good project management**
 - [X] Commit messages are concise and descriptive. [25 points]
