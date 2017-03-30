@@ -14,14 +14,15 @@ app.post('/ajax', (request, response) => {
   let options = JSON.parse(request.body)
   httpRequest(options, (error, sbResponse, body) => {
     if(error) {
-      response.json({'error': error})
-    } // TODO Error sbResponse doesn't exist even though no error appeared
-    response.json({
-      'headers': sbResponse.headers,
-      'body': body,
-      'statusCode': sbResponse.statusCode,
-      'httpVersion': sbResponse.httpVersion
-    })
+      response.json({'error': error, 'sbResponse': sbResponse})
+    } else {
+      response.json({
+        'headers': sbResponse.headers,
+        'body': body,
+        'statusCode': sbResponse.statusCode,
+        'httpVersion': sbResponse.httpVersion
+      })
+    }
   })
 })
 

@@ -1,6 +1,4 @@
 'use strict'
-var debug
-console.log('I\'m loading')
 
 function grabDom() {
   const QUERY_COUNT = 3
@@ -121,7 +119,6 @@ function render(domValues) {
 }
 
 window.addEventListener('load', () => { 
-  console.log('YO')
   document.querySelector('#buildRequest')
     .addEventListener('click', grabDom)
   document.querySelector('#buildSend')
@@ -135,4 +132,3 @@ window.addEventListener('load', () => {
     // case 'click':
   //lose focus
   //keydown when no inputs are focused
-  //click
