@@ -59,9 +59,9 @@
   - [X] Request builder HTML form
   - [X] Raw HTTP request
   - [X] Raw HTTP response
-- [ ] When a user fills out the HTML form and clicks a "Send" button...
+- [X] When a user fills out the HTML form and clicks a "Send" button...
   - [X] The raw HTTP request is generated and shown
-  - [ ] The HTTP request is sent, and the raw response message is shown
+  - [X] The HTTP request is sent, and the raw response message is shown
 - [X] Users can fill out an HTML form to specify HTTP request details.
 - [X] Submitting the form will send the request according to the specified details.
 - [X] Requests are made from the server, not from the browser (this is to avoid [CORS issues](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS)).

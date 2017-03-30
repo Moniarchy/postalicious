@@ -75,6 +75,7 @@ function populateObj(count, type, container) {
 
 function renderRequest(domValues) {
   let requestWindow = document.querySelector('.request-body')
+  cleanDom(requestWindow)
   if( 'url' in domValues && 'method' in domValues) {
     let urlParent = generateParent(requestWindow)
     generateElement('bold', 'request URL:', '0px', urlParent, 1)
@@ -97,12 +98,13 @@ function renderRequest(domValues) {
 
 function renderResponse(domValues) {
   let responseWindow = document.querySelector('.response-body')
+  cleanDom(responseWindow)
   if('error' in domValues){
     // TODO Display error information like status code etc.
   } else {
     let bodyContainer = generateParent(responseWindow)
     generateElement('bold', 'body:', '0px', bodyContainer, 1)
-    generateElement('standard', domValues.body, '0px', bodyContainer, 5)
+    generateElement('standard', domValues.body, '0px', bodyContainer, 5, true)
 
     let httpVersionContainer = generateParent(responseWindow)
     generateElement('bold', 'http version:', '0px', httpVersionContainer, 1)
@@ -113,9 +115,12 @@ function renderResponse(domValues) {
     generateElement('standard', domValues.statusCode, '0px', statusCodeContainer, 5)
 
     generateElement('bold', 'response Headers:', '0px', responseWindow, 0)
+    let headerParentContainer = generateParent(responseWindow)
+    headerParentContainer.style.flexDirection = 'column'
+    headerParentContainer.style.height = '400px'
     if('headers' in domValues) {
       for( let headerKey in domValues.headers) {
-        let headerParent = generateParent(responseWindow)
+        let headerParent = generateParent(headerParentContainer)
         generateElement('bold', headerKey+':', '10px', headerParent, 1)
         generateElement('standard', domValues.headers[headerKey], '0px', headerParent, 5)
       }
@@ -123,17 +128,22 @@ function renderResponse(domValues) {
   }
 }
 
-function generateElement(type, content, left, parent, grow) {
+function generateElement(type, content, left, parent, grow, overflow) {
   let element = document.createElement('p')
   if(type === 'bold') {
     element.style.fontWeight = '700'
   }
+  // TODO Fix styling issue when too much text is displayed in headers and body - overlap occurs
   element.style.display = 'flex'
   element.style.width = '150px'
   element.style.flexGrow = grow !== undefined ? grow : 1
-  element.style.margin = '5px 2px 5px 10px'
+  element.style.margin = '9px 2px 9px 10px'
   element.style.position = 'relative'
   element.style.left = left
+  if(overflow) {
+    element.style.overflow = 'auto'
+    element.style.maxHeight = '350px'
+  }
   element.textContent = content
   parent.appendChild(element)
 }
@@ -144,6 +154,12 @@ function generateParent(mainWindow) {
   parent.style.flexDirection = 'row'
   mainWindow.appendChild(parent)
   return parent
+}
+
+function cleanDom(windowToClean) {
+  while (windowToClean.hasChildNodes()) {
+    windowToClean.removeChild(windowToClean.lastChild)
+  }
 }
 
 window.addEventListener('load', () => { 

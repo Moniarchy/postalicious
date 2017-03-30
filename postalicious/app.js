@@ -14,7 +14,7 @@ app.post('/ajax', (request, response) => {
   let options = JSON.parse(request.body)
   httpRequest(options, (error, sbResponse, body) => {
     if(error) {
-      response.json({'error': error, 'sbResponse': sbResponse})
+      response.json({'error': error, 'sbResponse': sbResponse, 'body': body, 'test': 'Found me'})
     } else {
       response.json({
         'headers': sbResponse.headers,
