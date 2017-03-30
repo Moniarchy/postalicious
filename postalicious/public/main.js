@@ -41,7 +41,7 @@ function grabDom() {
     ajaxRequestOptions.headers = headers
   }
   
-  render(ajaxRequestOptions)
+  renderRequest(ajaxRequestOptions)
   return ajaxRequestOptions
 }
 
@@ -56,8 +56,7 @@ function ajax() {
   })
   .then(response => response.json())
   .then(responseJSON => {
-    console.log(responseJSON)
-    // TODO Dom manipulation to populate response DOM area
+    renderResponse(responseJSON)
   })
   .catch(errorMsg => {
     console.error(errorMsg)
@@ -74,13 +73,14 @@ function populateObj(count, type, container) {
   return tempObj
 }
 
-function render(domValues) {
+function renderRequest(domValues) {
   let requestWindow = document.querySelector('.request-body')
   if( 'url' in domValues && 'method' in domValues) {
-    let urlParent = generateParent()
+    let urlParent = generateParent(requestWindow)
     generateElement('bold', 'request URL:', '0px', urlParent, 1)
     generateElement('standard', domValues.url, '0px', urlParent, 5)
-    let methodParent = generateParent()
+
+    let methodParent = generateParent(requestWindow)
     generateElement('bold', 'request method:', '0px', methodParent, 1)
     generateElement('standard', domValues.method, '0px', methodParent, 5)
   }
@@ -88,34 +88,62 @@ function render(domValues) {
   generateElement('bold', 'request Headers:', '0px', requestWindow, 0)
   if('headers' in domValues) {
     for( let headerKey in domValues.headers) {
-      let headerParent = generateParent()
+      let headerParent = generateParent(requestWindow)
       generateElement('bold', headerKey+':', '10px', headerParent, 1)
       generateElement('standard', domValues.headers[headerKey], '0px', headerParent, 5)
     }
   }
+}
 
-  function generateElement(type, content, left, parent, grow) {
-    let element = document.createElement('p')
-    if(type === 'bold') {
-      element.style.fontWeight = '700'
+function renderResponse(domValues) {
+  let responseWindow = document.querySelector('.response-body')
+  if('error' in domValues){
+    // TODO Display error information like status code etc.
+  } else {
+    let bodyContainer = generateParent(responseWindow)
+    generateElement('bold', 'body:', '0px', bodyContainer, 1)
+    generateElement('standard', domValues.body, '0px', bodyContainer, 5)
+
+    let httpVersionContainer = generateParent(responseWindow)
+    generateElement('bold', 'http version:', '0px', httpVersionContainer, 1)
+    generateElement('standard', domValues.httpVersion, '0px', httpVersionContainer, 5)
+
+    let statusCodeContainer = generateParent(responseWindow)
+    generateElement('bold', 'status code:', '0px', statusCodeContainer, 1)
+    generateElement('standard', domValues.statusCode, '0px', statusCodeContainer, 5)
+
+    generateElement('bold', 'response Headers:', '0px', responseWindow, 0)
+    if('headers' in domValues) {
+      for( let headerKey in domValues.headers) {
+        let headerParent = generateParent(responseWindow)
+        generateElement('bold', headerKey+':', '10px', headerParent, 1)
+        generateElement('standard', domValues.headers[headerKey], '0px', headerParent, 5)
+      }
     }
-    element.style.display = 'flex'
-    element.style.width = '140px'
-    element.style.flexGrow = grow !== undefined ? grow : 1
-    element.style.margin = '5px 2px 5px 10px'
-    element.style.position = 'relative'
-    element.style.left = left
-    element.textContent = content
-    parent.appendChild(element)
   }
+}
 
-  function generateParent() {
-    let parent = document.createElement('div')
-    parent.style.display = 'flex'
-    parent.style.flexDirection = 'row'
-    requestWindow.appendChild(parent)
-    return parent
+function generateElement(type, content, left, parent, grow) {
+  let element = document.createElement('p')
+  if(type === 'bold') {
+    element.style.fontWeight = '700'
   }
+  element.style.display = 'flex'
+  element.style.width = '150px'
+  element.style.flexGrow = grow !== undefined ? grow : 1
+  element.style.margin = '5px 2px 5px 10px'
+  element.style.position = 'relative'
+  element.style.left = left
+  element.textContent = content
+  parent.appendChild(element)
+}
+
+function generateParent(mainWindow) {
+  let parent = document.createElement('div')
+  parent.style.display = 'flex'
+  parent.style.flexDirection = 'row'
+  mainWindow.appendChild(parent)
+  return parent
 }
 
 window.addEventListener('load', () => { 
