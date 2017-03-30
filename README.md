@@ -1,23 +1,22 @@
 # Postalicious
 
 - **Name:** Monica Williams, Serafin Wesnidge
-- **Github handle:** Moniarchy, Lumodon
+- **Github handle:** @Moniarchy, @Lumodon
 - **Team name:** `rare-malleefowl`
-- **JSDev link:*** [Postalicious](http://jsdev.learnersguild.org/goals/194-Postalicious-Demystifying_HTTP.html)
+- **JSDev link:** [Postalicious](http://jsdev.learnersguild.org/goals/194-Postalicious-Demystifying_HTTP.html)
 
 # Installation
-- [ ] Repository includes a README file with usage instructions and at least one example use case. [25 points]
-  1. Open terminal
-  2. type `git clone https://github.com/Moniarchy/postalicious.git`
-  3. change current working directory with `cd postalicious`
-  4. type `npm install`
-  5. type `pwd | pbcopy`
-  6. open a second terminal tab
-  7. in new terminal tab type `cd \`pbpaste\``
-  8. in one terminal tab type `npm run sb`
-  9. in the other terminal tab type `npm run pl`
-  10. open a browser window to `localhost:3001`
-  11. have fun!
+1. Open terminal
+2. type `git clone https://github.com/Moniarchy/postalicious.git`
+3. change current working directory with `cd postalicious`
+4. type `npm install`
+5. type `pwd | pbcopy`
+6. open a second terminal tab
+7. in new terminal tab type ``cd `pbpaste` ``
+8. in one terminal tab type `npm run sb`
+9. in the other terminal tab type `npm run pl`
+10. open a browser window to `localhost:3001`
+11. have fun!
 
 # Usage (Do HTTP Stuff)
 
