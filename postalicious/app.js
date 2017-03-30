@@ -15,7 +15,7 @@ app.post('/ajax', (request, response) => {
   httpRequest(options, (error, sbResponse, body) => {
     if(error) {
       response.json({'error': error})
-    }
+    } // TODO Error sbResponse doesn't exist even though no error appeared
     response.json({
       'headers': sbResponse.headers,
       'body': body,

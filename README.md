@@ -60,7 +60,7 @@
   - [X] Raw HTTP request
   - [X] Raw HTTP response
 - [ ] When a user fills out the HTML form and clicks a "Send" button...
-  - [ ] The raw HTTP request is generated and shown
+  - [X] The raw HTTP request is generated and shown
   - [ ] The HTTP request is sent, and the raw response message is shown
 - [X] Users can fill out an HTML form to specify HTTP request details.
 - [X] Submitting the form will send the request according to the specified details.
