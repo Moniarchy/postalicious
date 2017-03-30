@@ -1,4 +1,5 @@
 'use strict'
+var valuebug
 
 function grabDom() {
   const QUERY_COUNT = 3
@@ -47,6 +48,7 @@ function grabDom() {
 
 function ajax() {
   const options = grabDom()
+  const timeBefore = Date.now()
   fetch('//localhost:3001/ajax', {  
     method: 'post',
     headers: {
@@ -56,7 +58,7 @@ function ajax() {
   })
   .then(response => response.json())
   .then(responseJSON => {
-    renderResponse(responseJSON)
+    renderResponse(responseJSON, timeBefore)
   })
   .catch(errorMsg => {
     console.error(errorMsg)
@@ -96,15 +98,40 @@ function renderRequest(domValues) {
   }
 }
 
-function renderResponse(domValues) {
+function renderResponse(domValues, timeBefore) {
   let responseWindow = document.querySelector('.response-body')
   cleanDom(responseWindow)
   if('error' in domValues){
     // TODO Display error information like status code etc.
   } else {
+    // minutes: Math.floor(Math.abs(Math.floor((a-Date.now()) / 1000) / 60))
+    // seconds: Math.floor(Math.abs(Math.floor((a-Date.now()) / 1000) % 60))
+    let timeDifference = []
+    if(domValues.headers && domValues.headers.date) {
+      let currentTime = Date.parse(domValues.headers.date)
+      console.log('currentTime', currentTime, ', timeBefore', timeBefore)
+      let minutesAJAX = Math.floor(Math.abs(Math.floor((timeBefore-currentTime) / 1000) / 60))
+      let secondsAJAX = Math.floor(Math.abs(Math.floor((timeBefore-currentTime) / 1000) % 60))
+      timeDifference[0] = 'Minutes: ' + minutesAJAX + ', Seconds: ' + secondsAJAX
+
+      let currentTimePL = Date.now()      
+      console.log('currentTimePL', currentTimePL, ', timeBefore', timeBefore)
+      let minutesRender = Math.floor(Math.abs(Math.floor((timeBefore-currentTimePL) / 1000) / 60))
+      let secondsRender = Math.floor(Math.abs(Math.floor((timeBefore-currentTimePL) / 1000) % 60))
+      timeDifference[1] = 'Minutes: ' + minutesRender + ', Seconds: ' + secondsRender
+    }
+    valuebug = domValues.headers.date
     let bodyContainer = generateParent(responseWindow)
     generateElement('bold', 'body:', '0px', bodyContainer, 1)
     generateElement('standard', domValues.body, '0px', bodyContainer, 5, true)
+
+    let timeToRespondAJAX = generateParent(responseWindow)
+    generateElement('bold', 'time taken for response:', '0px', timeToRespondAJAX, 1)
+    generateElement('standard', timeDifference[0], '0px', timeToRespondAJAX, 5, true) 
+
+    let timeToRespondPL = generateParent(responseWindow)
+    generateElement('bold', 'time taken for render:', '0px', timeToRespondPL, 1)
+    generateElement('standard', timeDifference[1], '0px', timeToRespondPL, 5, true)
 
     let httpVersionContainer = generateParent(responseWindow)
     generateElement('bold', 'http version:', '0px', httpVersionContainer, 1)
