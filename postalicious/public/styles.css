@@ -17,7 +17,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-/* Begin of Form Section */
 
 .form-body form {
   display: flex;
@@ -35,11 +34,11 @@ fieldset {
   margin-top: 10px;
 }
 
-.buildRequest {
+#buildRequest {
   background-color: #73CE1B;
 }
 
-.buildSend {
+#buildSend {
   background-color: #4087DF;
 }
 
