@@ -27,9 +27,11 @@ function grabDom() {
     filteredValues.form_host = 'http://'+filteredValues.form_host
   }
 
+  filteredValues.form_method = filteredValues.form_method ? filteredValues.form_method.toUpperCase() : 'GET'
+
   let payloadRequestOptions = {
     'url': filteredValues.form_host,
-    'method': filteredValues.form_method || 'GET',
+    'method': filteredValues.form_method,
     'body': filteredValues.form_body
   }
 
@@ -195,7 +197,48 @@ window.addEventListener('load', () => {
     .addEventListener('click', grabDom)
   document.querySelector('#buildSend')
     .addEventListener('click', ajax)
+
+  onBlurHandler()
 })
+
+function onBlurHandler() {
+  let input_method = document.querySelector('#form_method')
+  let input_host = document.querySelector('#form_host')
+  let warning = document.querySelector('#displayWarning')
+  let validMethods = [
+    'GET', 'PUT', 'POST', 'PATCH', 'DELETE', 'COPY', 
+    'HEAD', 'OPTIONS', 'LINK', 'UNLINK', 'PURGE', 
+    'LOCK', 'UNLOCK', 'PROPFIND', 'VIEW'
+  ]
+
+  input_method.onblur = () => {
+    if(!(validMethods.includes(input_method.value.toUpperCase()))) {
+      input_method.style.border = 'orange 2px solid'
+      warning.style.display = 'block'
+      warning.textContent = 'Invalid verb. Please use a valid HTTP verb, or leave blank for GET'
+
+    } else {
+      input_method.style.border = '1px solid #cccccc'
+      input_method.style.borderinset
+      warning.style.display = 'none'
+    }
+  }
+
+  input_host.onblur = verifyInputHost
+}
+
+function verifyInputHost() {
+  let input_host = document.querySelector('#form_host')
+  let warning = document.querySelector('#displayWarning')
+  if(!input_host.value) {
+    input_host.style.border = 'orange 2px solid'
+    warning.style.display = 'block'
+    warning.textContent = 'Warning: Using default host of http://localhost:3000/'
+  } else {
+    input_host.style.border = '1px solid #cccccc'
+    warning.style.display = 'none'
+  }
+}
 
 // TODO: On lose focus - error validate the input boxes
 // on keydown (enter) don't submit form if textbox currently active
