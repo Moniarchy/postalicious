@@ -15,8 +15,10 @@
   2:9  error  Parsing error: Unexpected token :
 
 /Users/serafin/Projects/postalicious/postalicious/public/main.js
-   63:5  error  Unexpected console statement  no-console
-  120:7  error  Unexpected console statement  no-console
-  126:7  error  Unexpected console statement  no-console
+  65:5  error  Unexpected console statement  no-console
 
-✖ 8 problems (8 errors, 0 warnings)
+/Users/serafin/Projects/postalicious/usageExample.png
+  1:1  error  Parsing error: Unexpected character '�'
+
+✖ 7 problems (7 errors, 0 warnings)
+
