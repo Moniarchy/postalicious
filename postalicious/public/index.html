@@ -18,9 +18,9 @@
               <legend>Method Host</legend>
               <div class="form-grouping">
                 <label for="form_method">Method</label>
-                <input type="text" name="method" id="form_method" class="form-input">
+                <input type="text" name="method" id="form_method" class="form-input" placeholder="GET">
                 <label for="form_host">Host</label>
-                <input type="text" name="host" id="form_host" class="form-input">
+                <input type="text" name="host" id="form_host" class="form-input" placeholder="http://localhost:3000/">
               </div>
             </fieldset>
             <fieldset>
@@ -67,6 +67,7 @@
             <button type="button" id="buildSend">Build & Send</button>
           </div>
         </form>
+        <p id="displayWarning"></p>
       </div>
     </div>
     <div class="request-response-output">
