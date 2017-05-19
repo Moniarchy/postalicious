@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sb": "nodemon ./sandbox-server/app.js",
-    "pl": "nodemon ./postalicious/app.js"
+    "start": "nodemon ./postalicious/app.js"
   },
   "repository": {
     "type": "git",
