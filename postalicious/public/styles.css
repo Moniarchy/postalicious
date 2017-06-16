@@ -1,0 +1,187 @@
+html, body {
+  height: 97%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  height: 100%
+}
+
+.form-section {
+  height: 33%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-body form {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  width: 25%;
+  height: 100%;
+}
+
+.inputButtons {
+  display: flex;
+  align-self: flex-end;
+  margin-top: 10px;
+}
+
+#buildRequest {
+  background-color: #73CE1B;
+}
+
+#buildSend {
+  background-color: #4087DF;
+}
+
+.inputButtons input {
+  margin: 5px;
+  height: 45px;
+  width: 175px;
+  border: none;
+  color: #484B3A;
+  font-size: 1em;
+}
+
+.inputButtons input:active {
+  border: none;
+}
+
+.inputFields {
+  display: flex;
+}
+
+.form-input {
+  max-width: 230px;
+  height: 30px;
+  font-size: 1.3em;
+  margin: 0.5px;
+  border: 1px solid #cccccc;
+}
+
+.form-key {
+  max-width: 120px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-grouping {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.query-paremeters {
+  display: flex;
+  flex-direction: column;
+}
+
+.request-response-output {
+  box-sizing: border-box;
+  height: 66%;
+  display: flex;
+}
+.request-section,
+.response-section {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  overflow-y: auto;
+}
+
+.form-header,
+.request-header,
+.response-header {
+  color: #474747;
+  height: 50px;
+  line-height: 50px;
+}
+
+#form_method {
+  text-transform: uppercase;
+}
+
+.form-header {
+  background-color: #9c9c9c;
+}
+
+.request-header {
+  background-color: #81d232;
+}
+
+.response-header {
+  background-color: #4d93e0;
+}
+
+.request-body,
+.response-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+}
+
+.form-body {
+  background-color: #f9f9f9;
+}
+
+#displayWarning {
+  display: none;
+  color: orange;
+  font-size: 1.4em;
+  position: relative;
+  top: -20px;
+  font-weight: 700;
+}
+
+.request-body {
+  background-color: #f3fae9;
+}
+
+.response-body {
+  background-color: #edf4fc;
+}
+
+.requestResponseNode {
+  display: flex;
+  width: 150px;
+  margin: 9px 2px 9px 10px;
+  position: relative;
+  min-height: 40px;
+}
+
+.requestResponseParent {
+  display: flex;
+  flex-direction: row;
+  min-height: 40px;
+}
+
+.overflow {
+  overflow: auto;
+  min-height: 350px;
+  max-height: 350px;
+}
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #d5d5d5;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+  color: #d5d5d5;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+  color: #d5d5d5;
+}
+input:-moz-placeholder { /* Firefox 18- */
+  color: #d5d5d5;
+}

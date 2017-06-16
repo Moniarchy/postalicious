@@ -1,0 +1,22 @@
+{
+  "name": "sandbox-server",
+  "version": "1.0.0",
+  "author": "Monica Williams, Serafin Wesnidge",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sb": "nodemon ./sandbox-server/app.js",
+    "pl": "nodemon ./postalicious/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moniarchy/postalicious.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "request": "^2.81.0"
+  }
+}
