@@ -30,4 +30,4 @@ app.get('/favicon.ico', (req, res) => {
   res.sendStatus(204)
 })
 
-app.listen(3001)
+app.listen(process.env || 3001)
